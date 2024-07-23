@@ -4,7 +4,7 @@ import os
 from src.commands.gensinglecolorimage import GenerateSingleColorImage
 
 
-class TestGenerateImageSolid(TestCase):
+class TestGenerateSingleColorImage(TestCase):
     dir_temp = '.temp'
     outfile = '.temp/image.png'
     width = 640

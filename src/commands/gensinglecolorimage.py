@@ -67,11 +67,7 @@ class GenerateSingleColorImage:
         return command
 
 
-    def run(self) -> bool:
-        """Run the command.
-
-        Return `True` if successful, otherwise return `False`.
-        """
+    def run(self) -> None:
+        """Run the command."""
         command = self.build()
-        result = subprocess.run(command, cwd='.')
-        return (result.returncode == 0)
+        subprocess.run(command, cwd='.')

@@ -28,7 +28,7 @@ freeze:
 
 test:
 	@source $(ACTIVATE_SCRIPT) && \
-		python -m pytest tests -vvl
+		python3 -m pytest tests -vvl
 
 coverage:
 	@source $(ACTIVATE_SCRIPT) && \
