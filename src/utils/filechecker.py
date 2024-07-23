@@ -17,3 +17,10 @@ def file_ouptut_checker(filename: str, overwrite: bool=False):
     if os.path.isdir(filename):
         message = f'File `{filename} already exists as a directory.`'
         raise FileExistsError(message)
+
+
+def file_input_checker(filename: str):
+    """Check if a file does not exist and raise `FileNotFoundError` is true."""
+    if not os.path.isfile(filename):
+        message = f'File `{filename}` not found.'
+        raise FileNotFoundError(message)
