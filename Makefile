@@ -12,26 +12,37 @@ setup:
 		pip install -r $(REQUIREMENTS_FILE) || \
 		exit 0
 
-install:
-	source $(ACTIVATE_SCRIPT) && \
+add-package:
+	@source $(ACTIVATE_SCRIPT) && \
 		read -p "Package name: " PACKAGE && \
 		pip install $${PACKAGE}
 
+remove-package:
+	@source $(ACTIVATE_SCRIPT) && \
+		read -p "Package name: " PACKAGE && \
+		pip uninstall $${PACKAGE}
+
 freeze:
-	source $(ACTIVATE_SCRIPT) && \
+	@source $(ACTIVATE_SCRIPT) && \
 		pip freeze > $(REQUIREMENTS_FILE)
 
 test:
-	source $(ACTIVATE_SCRIPT) && \
+	@source $(ACTIVATE_SCRIPT) && \
 		python -m pytest tests -vvl
 
 coverage:
-	source $(ACTIVATE_SCRIPT) && \
+	@source $(ACTIVATE_SCRIPT) && \
 		coverage run -m pytest tests
 
 report:
-	source $(ACTIVATE_SCRIPT) && \
+	@source $(ACTIVATE_SCRIPT) && \
 		coverage report -m
 
+install:
+	@sh ./scripts/install.sh
 
-.PHONY: setup install freeze test coverage report
+uninstall:
+	@sh ./scripts/uninstall.sh
+
+
+.PHONY: setup add-package remove-package freeze test coverage report install uninstall
