@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+import os
+import sys
+import argparse
+
+sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), './../../'))
+from src.commands.cropmidia import CropMidia
+
+
+
+description    = 'Crop a video or an image.'
+help_input     = 'The filename of the input media.'
+help_x         = 'The start point of the crop in the media in the X-axis.'
+help_y         = 'The start point of the crop in the media in the Y-axis.'
+help_width     = 'The width of the output media.'
+help_height    = 'The height of the output media.'
+help_top       = 'The start point of the crop starting from the top edge.'
+help_bottom    = 'The start point of the crop starting from the bottom edge.'
+help_left      = 'The start point of the crop starting from the left edge.'
+help_right     = 'The start point of the crop starting from the right edge.'
+
+help_ouptut    = 'The filename of the output media containing the file extension.'
+help_overwrite = 'Whether the output media can overwrite an existing one.'
+help_help      = 'Show this help message and exit.'
+
+
+parser = argparse.ArgumentParser(description=description, add_help=False)
+parser.add_argument('infile',
+                    type=str,
+                    metavar='INPUT',
+                    help=help_input)
+parser.add_argument('-x',
+                    type=int,
+                    dest='x',
+                    help=help_x)
+parser.add_argument('-y',
+                    type=int,
+                    dest='y',
+                    help=help_y)
+parser.add_argument('-w',
+                    '--width',
+                    type=int,
+                    help=help_width)
+parser.add_argument('-h',
+                    '--height',
+                    type=int,
+                    help=help_height)
+parser.add_argument('-t',
+                    '--top',
+                    type=int,
+                    help=help_top)
+parser.add_argument('-r',
+                    '--right',
+                    type=int,
+                    help=help_right)
+parser.add_argument('-b',
+                    '--bottom',
+                    type=int,
+                    help=help_bottom)
+parser.add_argument('-l',
+                    '--left',
+                    type=int,
+                    help=help_left)
+parser.add_argument('-o', '--output',
+                    type=str,
+                    default='output.png',
+                    dest='outfile',
+                    help=help_ouptut)
+parser.add_argument('-O', '--overwrite',
+                    type=bool,
+                    default=False,
+                    help=help_overwrite)
+parser.add_argument('--help',
+                    action='help',
+                    help=help_help)
+
+
+
+def main():
+    args = parser.parse_args()
+    CropMidia(**vars(args)).run()
+    pass
+
+
+
+if __name__ == '__main__':
+    main()
