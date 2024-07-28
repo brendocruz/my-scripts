@@ -2,7 +2,7 @@ from typing import Optional
 from dataclasses import dataclass
 import subprocess
 
-from src.utils.filechecker import file_ouptut_checker
+from src.utils.filechecker import file_output_checker
 
 
 @dataclass
@@ -35,7 +35,7 @@ class GenerateSingleColorImage:
         if self.overwrite:
             overwrite = True
 
-        file_ouptut_checker(outfile, overwrite)
+        file_output_checker(outfile, overwrite)
 
         return GenerateSingleColorImageArgs(outfile=outfile,
                                             overwrite=overwrite,

@@ -3,7 +3,7 @@ from typing import Optional
 import subprocess
 
 from src.utils.filechecker import file_input_checker
-from src.utils.filechecker import file_ouptut_checker
+from src.utils.filechecker import file_output_checker
 
 
 
@@ -43,7 +43,7 @@ class CropMidia():
             overwrite = True
 
         file_input_checker(infile)
-        file_ouptut_checker(outfile)
+        file_output_checker(outfile)
 
         x      = self.x
         y      = self.y

@@ -1,6 +1,6 @@
 from unittest import TestCase
 from unittest.mock import patch
-from src.utils.filechecker import file_ouptut_checker
+from src.utils.filechecker import file_output_checker
 from src.utils.filechecker import file_input_checker
 
 
@@ -12,14 +12,14 @@ class TestFileOutputChecker(TestCase):
     def test_exists_as_file_and_overwrite_false(self, mock_isfile):
         mock_isfile.return_value = True
         with self.assertRaises(FileExistsError):
-            file_ouptut_checker(self.outfile, False)
+            file_output_checker(self.outfile, False)
 
 
     @patch('os.path.isfile')
     def test_exists_as_file_and_overwrite_true(self, mock_isfile):
         mock_isfile.return_value = True
         try:
-            file_ouptut_checker(self.outfile, True)
+            file_output_checker(self.outfile, True)
         except FileExistsError:
             self.fail()
 
@@ -28,21 +28,21 @@ class TestFileOutputChecker(TestCase):
     def test_exists_as_directory_and_overwrite_false(self, mock_isdir):
         mock_isdir.return_value = True
         with self.assertRaises(FileExistsError):
-            file_ouptut_checker(self.outfile, False)
+            file_output_checker(self.outfile, False)
 
 
     @patch('os.path.isdir')
     def test_exists_as_directory_and_overwrite_true(self, mock_isdir):
         mock_isdir.return_value = True
         with self.assertRaises(FileExistsError):
-            file_ouptut_checker(self.outfile, True)
+            file_output_checker(self.outfile, True)
 
 
     @patch('os.path.isdir')
     def test_exists_false(self, mock_isdir):
         mock_isdir.return_value = True
         with self.assertRaises(FileExistsError):
-            file_ouptut_checker(self.outfile, True)
+            file_output_checker(self.outfile, True)
 
 
 

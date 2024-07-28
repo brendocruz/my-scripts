@@ -1,7 +1,7 @@
 import os
 
 
-def file_ouptut_checker(filename: str, overwrite: bool=False):
+def file_output_checker(filename: str, overwrite: bool=False):
     """Check if a file already exists and raise `FileExistsError` 
     if true and overwrite is not allowed. Always raise `FileExistsError`
     is the file already exists as a directory.
@@ -15,7 +15,7 @@ def file_ouptut_checker(filename: str, overwrite: bool=False):
         raise FileExistsError(message)
 
     if os.path.isdir(filename):
-        message = f'File `{filename} already exists as a directory.`'
+        message = f'File `{filename}` already exists as a directory.`'
         raise FileExistsError(message)
 
 

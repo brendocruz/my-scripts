@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+import os
+import sys
+import argparse
+
+sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), './../../'))
+from src.utils.typechecker import parse_time
+from src.commands.extractframes import ExtractVideoFrames
+
+
+
+description    = 'Extract frames of a video.'
+help_input     = 'The filename of the input media.'
+help_frames    = 'The frame(s) to be extracted.'
+help_start     = 'The start time at which to begin extracting frames.'
+help_end       = 'The end time at which to stop extracting frames.'
+help_duration  = 'The amount of time from .... '
+help_all       = 'Whether extract all frames.'
+help_ouptut    = 'The filename of the output media containing the file extension.'
+help_destdir   = ''
+help_overwrite = 'Whether the output media can overwrite an existing one.'
+help_help      = 'Show this help message and exit.'
+
+
+
+parser = argparse.ArgumentParser(description=description, add_help=False)
+parser.add_argument('infile',
+                    type=str,
+                    metavar='INPUT',
+                    help=help_input)
+parser.add_argument('-f', '--frames',
+                    type=int,
+                    nargs='+',
+                    action='extend',
+                    help=help_frames)
+parser.add_argument('-s', '--start',
+                    type=parse_time,
+                    help=help_start)
+parser.add_argument('-e', '--end',
+                    type=parse_time,
+                    help=help_end)
+parser.add_argument('-d', '--duration',
+                    type=parse_time,
+                    help=help_duration)
+parser.add_argument('-a', '--all',
+                    action='store_true',
+                    help=help_all)
+parser.add_argument('-o', '--output',
+                    type=str,
+                    dest='outfile',
+                    help=help_ouptut)
+parser.add_argument('-D', '--destdir',
+                    type=str,
+                    help=help_destdir)
+parser.add_argument('-O', '--overwrite',
+                    action='store_true',
+                    help=help_overwrite)
+parser.add_argument('--help',
+                    action='help',
+                    help=help_help)
+
+
+
+def main():
+    args = parser.parse_args()
+    ExtractVideoFrames(**vars(args)).run()
+    pass
+
+
+
+if __name__ == '__main__':
+    main()
